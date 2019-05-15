@@ -5,17 +5,20 @@
  */
 package gui;
 
+import Logica.Contador;
+
 /**
  *
  * @author Estudiantes
  */
-public class NewJFrame extends javax.swing.JFrame {
-
+public class GuiContador extends javax.swing.JFrame {
+    private Contador contador = new Contador();
     /**
      * Creates new form NewJFrame
      */
-    public NewJFrame() {
+    public GuiContador() {
         initComponents();
+        lblValor.setText(String.valueOf(contador.getValor()));
     }
 
     /**
@@ -27,21 +30,112 @@ public class NewJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblEtiquetaValor = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
+        lblValor = new javax.swing.JLabel();
+        btnContar = new javax.swing.JButton();
+        btnDescontar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setLocationByPlatform(true);
+        setResizable(false);
+
+        lblEtiquetaValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblEtiquetaValor.setText("Valor: ");
+        lblEtiquetaValor.setToolTipText("");
+
+        lblTitulo.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitulo.setText("Contador POO G87");
+
+        lblValor.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblValor.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblValor.setText("0");
+
+        btnContar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnContar.setText("Contar");
+        btnContar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContarActionPerformed(evt);
+            }
+        });
+
+        btnDescontar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnDescontar.setText("Descontar");
+        btnDescontar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDescontarActionPerformed(evt);
+            }
+        });
+
+        btnBorrar.setBackground(new java.awt.Color(204, 204, 204));
+        btnBorrar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnBorrar.setForeground(new java.awt.Color(255, 0, 0));
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBorrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnContar)
+                        .addGap(45, 45, 45)
+                        .addComponent(btnDescontar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addComponent(btnBorrar))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblEtiquetaValor)
+                        .addGap(33, 33, 33)
+                        .addComponent(lblValor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblTitulo)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblEtiquetaValor)
+                    .addComponent(lblValor))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnContar)
+                    .addComponent(btnDescontar)
+                    .addComponent(btnBorrar))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnContarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContarActionPerformed
+        // TODO add your handling code here:
+        contador.avanzar();
+        lblValor.setText(String.valueOf(contador.getValor()));
+    }//GEN-LAST:event_btnContarActionPerformed
+
+    private void btnDescontarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDescontarActionPerformed
+        // TODO add your handling code here:
+        contador.retroceder();
+        lblValor.setText(String.valueOf(contador.getValor()));
+    }//GEN-LAST:event_btnDescontarActionPerformed
+
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+        // TODO add your handling code here:
+        contador.borrar();
+        lblValor.setText(String.valueOf(contador.getValor()));
+        
+    }//GEN-LAST:event_btnBorrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -60,24 +154,32 @@ public class NewJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiContador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiContador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiContador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(NewJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(GuiContador.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewJFrame().setVisible(true);
+                new GuiContador().setVisible(true);
             }
+            
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnContar;
+    private javax.swing.JButton btnDescontar;
+    private javax.swing.JLabel lblEtiquetaValor;
+    private javax.swing.JLabel lblTitulo;
+    private javax.swing.JLabel lblValor;
     // End of variables declaration//GEN-END:variables
 }
